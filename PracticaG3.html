@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMEN</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+        nav {
+            background-color: #444;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        .vertical-menu {
+            width: 200px;
+        }
+        .vertical-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .vertical-menu li {
+            padding: 8px;
+            margin-bottom: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        .vertical-menu li:hover {
+            background-color: #444;
+            cursor: pointer;
+        }
+        .horizontal-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 10px 0;
+        }
+        .horizontal-menu li {
+            display: inline;
+        }
+        .horizontal-menu li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .horizontal-menu li a:hover {
+            background-color: #333;
+        }
+        main {
+            display: flex;
+            flex: 1;
+            justify-content: space-between;
+        }
+        section {
+            padding: 20px;
+            width: 48%;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .image-container {
+            text-align: center;
+            margin: auto;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Basketball</h1>
+        <P>Examen-Rodriguez Martinez Luis Fernando</P>
+    </header>
+    
+    
+    <main>
+        
+       <section style="width: 30%;">
+        <div class="image-container">
+        <img src= "1.png" alt="Imagen" border="0" width="200" height="200">
+        </div>
+           
+        <div align = center>
+        <h3>$ 700 mxn</h3>
+        <h3>Spalding Unisex Adulto-Baloncesto Negro</h3>
+        <label for="cantidad1">Cantidad:</label>
+        <input type="number" id="cantidad1" name="cantidad1" min="0" max="10"><br><br>
+        <p id="disponibles1">Unidades disponibles: 10</p>
+        <input type="button" id="compra1" name="compra" value="Comprar" onclick="comprar(1)">
+        </div>
+        
+        
+        </section>
+        
+        <section style="width: 30%;">
+        <div class="image-container">
+        <img src= "2.png" alt="Imagen" border="0" width="200" height="200">
+        </div>
+        <div align = center>
+        <h3>$ 1000 mxn</h3>
+        <h3>Canasta de Basquetbol para Niños Plegable</h3>
+        <label for="cantidad2">Cantidad:</label>
+        <input type="number" id="cantidad2" name="cantidad2" min="0" max="10"><br><br>
+        <p id="disponibles2">Unidades disponibles: 10</p>
+        <input type="button" id="compra2" name="compra" value="Comprar" onclick="comprar(2)">
+        </div>
+        </section>
+        
+        <section style="width: 30%;">
+        <div class="image-container">
+        <img src= "3.png" alt="Imagen" border="0" width="200" height="200">
+        </div>
+        <div align = center>
+        <h3>$ 845 mxn </h3>
+        <h3>Mochila grande de baloncesto</h3>
+        <label for="cantidad3">Cantidad:</label>
+        <input type="number" id="cantidad3" name="cantidad3" min="0" max="10"><br><br>
+        <p id="disponibles3">Unidades disponibles: 10</p>
+        <input type="button" id="compra3" name="compra" value="Comprar" onclick="comprar(3)">
+        </div>
+        
+        </section>
+        
+    </main>
+    
+    
+    <footer>
+        <p>&copy; 2024 TecNM</p>
+    </footer>
+   
+    <script>
+        // Función para manejar la compra
+        function comprar(producto) {
+            var cantidadInput = document.getElementById('cantidad' + producto);
+            var disponiblesParrafo = document.getElementById('disponibles' + producto);
+            var disponibles = parseInt(disponiblesParrafo.textContent.split(": ")[1]);
+            
+            // Verificar si hay suficientes unidades disponibles
+            if (cantidadInput.value > disponibles) {
+                alert("No hay suficientes unidades disponibles.");
+                return;
+            }
+            
+            // Restar la cantidad seleccionada de las unidades disponibles
+            disponibles -= cantidadInput.value;
+            if (disponibles < 0) {
+                disponibles = 0;
+            }
+            disponiblesParrafo.textContent = "Unidades disponibles: " + disponibles;
+            
+            // Si las unidades disponibles llegan a cero, ocultar toda la sección del producto
+            if (disponibles === 0) {
+                var productoSection = document.querySelector('section:nth-child(' + producto + ')');
+                productoSection.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
